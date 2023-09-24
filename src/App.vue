@@ -17,12 +17,12 @@
               :dark-mode-enabled="enabled"
               :style="{
                 width: '8rem',
-                height: '8rem'
+                height: '8rem',
               }"
               @click="
                 () => {
-                  toggle()
-                  clickAgain = !clickAgain
+                  toggle();
+                  clickAgain = !clickAgain;
                 }
               "
             />
@@ -34,28 +34,32 @@
           <p v-show="enabled">Be careful out there!</p>
           <p v-show="!enabled">The sun is up, have a good day.</p>
 
-          <button type="button" @click="toggle" id="toggle">
-            {{ enabled ? 'Turn the lights on!' : "I'm sleeping in until the evening!" }}
+          <button id="toggle" type="button" @click="toggle">
+            {{
+              enabled
+                ? 'Turn the lights on!'
+                : "I'm sleeping in until the evening!"
+            }}
           </button>
         </div>
 
         <section id="features">
           <h2>Features</h2>
           <p>
-            How useless would it be if it didn't have some features? Thankfully, it does, so here
-            they are.
+            How useless would it be if it didn't have some features? Thankfully,
+            it does, so here they are.
           </p>
           <h3>Responsive Sizing</h3>
           <p>
-            Specify the height and with and the toggle will maintain its look without pissing you
-            off.
+            Specify the height and with and the toggle will maintain its look
+            without pissing you off.
           </p>
           <div id="sizes">
             <VueDarkModeToggle
               :dark-mode-enabled="enabled"
               :style="{
                 width: '4rem',
-                height: '4rem'
+                height: '4rem',
               }"
             />
             4rem
@@ -64,7 +68,7 @@
               :dark-mode-enabled="enabled"
               :style="{
                 width: '2rem',
-                height: '2rem'
+                height: '2rem',
               }"
             />
             2rem
@@ -73,7 +77,7 @@
               :dark-mode-enabled="enabled"
               :style="{
                 width: '1rem',
-                height: '1rem'
+                height: '1rem',
               }"
             />
             1rem
@@ -83,16 +87,21 @@
         <section id="usage">
           <h2>Usage</h2>
           <p>
-            The package includes a component and a composable. Use the package if you'd like a cool
-            and ready-made icon for your users to toggle. Use the composable if you want to control
-            the dark mode setting.
+            The package includes a component and a composable. Use the package
+            if you'd like a cool and ready-made icon for your users to toggle.
+            Use the composable if you want to control the dark mode setting.
           </p>
           <p>Better yet, combine both for maximum effect!</p>
 
           <h3>Example</h3>
           <div class="code-wrapper">
             <span class="label">vue</span>
-            <CodeBlock highlightjs class="code" :code="example" theme="paraiso-dark" />
+            <CodeBlock
+              highlightjs
+              class="code"
+              :code="example"
+              theme="paraiso-dark"
+            />
           </div>
 
           <h3>Component props</h3>
@@ -107,8 +116,9 @@
           <h4>applyTo</h4>
           <span class="type">string, null, HTML Element</span>
           <p>
-            Apply the class name to the given element. If explicitely set to null no element will be
-            targeted and you must handle the application yourself.
+            Apply the class name to the given element. If explicitely set to
+            null no element will be targeted and you must handle the application
+            yourself.
           </p>
         </section>
       </div>
@@ -117,14 +127,13 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import example from './assets/example.vue?raw'
-import VueDarkModeToggle, { useDarkMode } from './VueDarkModeToggle'
-import CodeBlock from 'vue3-code-block'
+import { ref } from 'vue';
+import example from '../examples/example.vue?raw';
+import VueDarkModeToggle, { useDarkMode } from './VueDarkModeToggle';
+import CodeBlock from 'vue3-code-block';
 
-const { enabled, toggle } = useDarkMode()
-const clickAgain = ref(false)
-const clickAgainText = ref('Click me!')
+const { enabled, toggle } = useDarkMode({ applyTo: 'body' });
+const clickAgain = ref(false);
 </script>
 
 <style>

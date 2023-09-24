@@ -14,35 +14,35 @@
 </template>
 
 <script setup lang="ts">
-import { onBeforeMount, ref, watch } from 'vue'
-import FaMoon from './icons/FaMoon.vue'
-import FaSun from './icons/FaSun.vue'
+import { onBeforeMount, ref, watch } from 'vue';
+import FaMoon from './icons/FaMoon.vue';
+import FaSun from './icons/FaSun.vue';
 
-const degrees = ref(0)
+const degrees = ref(0);
 
 const props = defineProps({
   darkModeEnabled: {
     type: Boolean,
-    default: false
+    default: false,
   },
   as: {
     type: [String, Object],
-    default: 'span'
-  }
-})
+    default: 'span',
+  },
+});
 
 onBeforeMount(() => {
   if (props.darkModeEnabled) {
-    degrees.value = 180
+    degrees.value = 180;
   }
-})
+});
 
 watch(
   () => props.darkModeEnabled,
-  (v) => {
-    degrees.value += 180
-  }
-)
+  () => {
+    degrees.value += 180;
+  },
+);
 </script>
 
 <style scoped>
