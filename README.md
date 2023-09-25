@@ -1,51 +1,44 @@
 # Vue Dark Mode Toggle
 
-This template should help get you started developing with Vue 3 in Vite.
+Add a sleek, animated dark mode toggle to your Vue 3 project. It handles everything you need with a composable and a component.
 
-## Recommended IDE Setup
+Check out the [demo here!](https://edenchazard.github.io/vue-dark-mode-toggle/).
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+## VueDarkModeToggle
 
-## Type Support for `.vue` Imports in TS
+A component that can be used with the composable. The component doesn't decide if dark mode is enabled itself, but it accepts a `dark-mode-enabled' prop and will display the appropriate sun/moon graphic.
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+## useDarkMode
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+A composable to handle all dark mode related things. Combine it with the component for maximum dark mode-ness. 😎
 
-1. Disable the built-in TypeScript Extension
-   1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-   2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+# How to use
 
-## Customize configuration
+Documentation can be found on the [demo page](https://edenchazard.github.io/vue-dark-mode-toggle/).
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+## Development
 
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
+### Dev mode
 
 ```sh
 npm run dev
 ```
 
-### Type-Check, Compile and Minify for Production
+### Build demo app
+
+Will build to the `/docs` demo folder.
 
 ```sh
 npm run build
 ```
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
+### Vitest
 
 ```sh
 npm run test:unit
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+### Eslint
 
 ```sh
 npm run lint
