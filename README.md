@@ -14,6 +14,12 @@ A composable to handle all dark mode related things. Combine it with the compone
 
 # How to use
 
+Add to your project using the command
+
+```sh
+npm i @edenchazard/vue-dark-mode-toggle
+```
+
 Documentation can be found on the [demo page](https://edenchazard.github.io/vue-dark-mode-toggle/).
 
 ## Development
