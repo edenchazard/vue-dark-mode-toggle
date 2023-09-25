@@ -1,11 +1,30 @@
 {
   "name": "vue-dark-mode-toggle",
-  "version": "0.0.0",
-  "private": true,
+  "version": "1.0.0",
+  "private": false,
+  "homepage": "https://github.com/edenchazard/vue-dark-mode-toggle#readme",
+  "files": ["lib"],
+  "main": "./lib/vue-slick-press.umd.cjs",
+  "module": "./lib/vue-slick-press.js",
+  "exports": {
+    ".": {
+      "import": "./lib/vue-dark-mode-toggle.js",
+      "require": "./lib/vue-dark-mode-toggle.umd.cjs"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/edenchazard/vue-dark-mode-toggle.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/edenchazard/vue-dark-mode-toggle/issues"
+  },
   "scripts": {
     "dev": "vite --host",
     "build": "run-p ts:check \"build-only {@}\" --",
     "build-only": "vite build",
+    "pkg": "vite build --mode package",
     "preview": "vite preview",
     "test:unit": "vitest --coverage",
     "ts:check": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false",

@@ -1,19 +1,51 @@
 import { fileURLToPath, URL } from 'node:url';
 
-import { defineConfig } from 'vite';
+import { defineConfig, UserConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
+import { resolve } from 'node:path';
 
 // https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [vue()],
-  build: {
-    outDir: './docs',
-    emptyOutDir: true,
-  },
-  base: '/vue-dark-mode-toggle/',
-  resolve: {
-    alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url)),
+export default defineConfig(({ mode }) => {
+  const baseConfig: UserConfig = {
+    plugins: [vue()],
+    base: '/vue-dark-mode-toggle/',
+    resolve: {
+      alias: {
+        '@': fileURLToPath(new URL('./src', import.meta.url)),
+      },
     },
-  },
+  };
+
+  if (mode === 'package') {
+    return {
+      ...baseConfig,
+      build: {
+        outDir: './lib',
+        emptyOutDir: true,
+        lib: {
+          entry: resolve(__dirname, 'src/VueDarkModeToggle/index.ts'),
+          name: 'VueDarkModeToggle',
+          formats: ['es', 'cjs'],
+        },
+      },
+      rollupOptions: {
+        external: ['vue'],
+        output: {
+          // Provide global variables to use in the UMD build
+          // for externalized deps
+          globals: {
+            vue: 'Vue',
+          },
+        },
+      },
+    };
+  } else {
+    return {
+      ...baseConfig,
+      build: {
+        outDir: './docs',
+        emptyOutDir: true,
+      },
+    };
+  }
 });
