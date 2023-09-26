@@ -10,10 +10,14 @@ export default defineConfig(({ mode }) => {
   const baseConfig: UserConfig = {
     plugins: [
       vue(),
-      dts({
-        entryRoot: './src',
-        tsconfigPath: './tsconfig.app.json',
-      }),
+      dts(
+        mode === 'package'
+          ? {
+              entryRoot: './src',
+              tsconfigPath: './tsconfig.app.json',
+            }
+          : {},
+      ),
     ],
     base: '/vue-dark-mode-toggle/',
     resolve: {
