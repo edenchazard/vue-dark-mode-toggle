@@ -2,12 +2,19 @@ import { fileURLToPath, URL } from 'node:url';
 
 import { defineConfig, UserConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
-import { resolve } from 'node:path';
+import { resolve } from 'path';
+import dts from 'vite-plugin-dts';
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
   const baseConfig: UserConfig = {
-    plugins: [vue()],
+    plugins: [
+      vue(),
+      dts({
+        entryRoot: './src',
+        tsconfigPath: './tsconfig.app.json',
+      }),
+    ],
     base: '/vue-dark-mode-toggle/',
     resolve: {
       alias: {
@@ -23,13 +30,13 @@ export default defineConfig(({ mode }) => {
         outDir: './lib',
         emptyOutDir: true,
         lib: {
-          entry: resolve(__dirname, 'src/VueDarkModeToggle/index.ts'),
+          entry: resolve(__dirname, 'src/index.ts'),
           name: 'VueDarkModeToggle',
           formats: ['es', 'cjs'],
         },
       },
       rollupOptions: {
-        external: ['vue'],
+        external: ['vue', 'vue3-code-block'],
         output: {
           // Provide global variables to use in the UMD build
           // for externalized deps

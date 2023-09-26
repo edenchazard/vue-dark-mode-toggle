@@ -14,21 +14,20 @@
 </template>
 
 <script setup lang="ts">
-import { onBeforeMount, ref, watch } from 'vue';
+import { onBeforeMount, ref, watch, type Component } from 'vue';
 import FaMoon from './icons/FaMoon.vue';
 import FaSun from './icons/FaSun.vue';
 
 const degrees = ref(0);
 
-const props = defineProps({
-  darkModeEnabled: {
-    type: Boolean,
-    default: false,
-  },
-  as: {
-    type: [String, Object],
-    default: 'span',
-  },
+export type Props = {
+  darkModeEnabled?: boolean;
+  as?: string | Component;
+};
+
+const props = withDefaults(defineProps<Props>(), {
+  darkModeEnabled: false,
+  as: 'span',
 });
 
 onBeforeMount(() => {

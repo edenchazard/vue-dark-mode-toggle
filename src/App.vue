@@ -129,7 +129,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import example from '../examples/example.vue?raw';
-import VueDarkModeToggle, { useDarkMode } from './VueDarkModeToggle';
+import { VueDarkModeToggle, useDarkMode } from '.';
 import CodeBlock from 'vue3-code-block';
 
 const { enabled, toggle } = useDarkMode({ applyTo: 'body' });
@@ -321,3 +321,4 @@ button {
   }
 }
 </style>
+.
