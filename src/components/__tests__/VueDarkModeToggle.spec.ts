@@ -19,4 +19,30 @@ describe('VueDarkModeToggle', () => {
 
     expect(wrapper.classes()).to.not.contain('night');
   });
+
+  it('shows enabled text when enabled', async () => {
+    const wrapper = mount(VueDarkModeToggle, {
+      props: {
+        darkModeEnabled: true,
+        srText: {
+          enabled: 'dark mode is enabled',
+          disabled: 'light mode is enabled',
+        },
+      },
+    });
+    expect(wrapper.text()).to.contain('dark mode is enabled');
+  });
+
+  it('shows disabled text when enabled', async () => {
+    const wrapper = mount(VueDarkModeToggle, {
+      props: {
+        darkModeEnabled: false,
+        srText: {
+          enabled: 'dark mode is enabled',
+          disabled: 'light mode is enabled',
+        },
+      },
+    });
+    expect(wrapper.text()).to.contain('light mode is enabled');
+  });
 });

@@ -3,10 +3,12 @@
     :is="as"
     class="dark-mode-toggle"
     :class="{ night: darkModeEnabled }"
-    aria-label="Toggle Dark Mode"
   >
-    <span class="dark-mode-bg"> </span>
-    <span class="dark-mode-rotate">
+    <span class="sr-only"
+      >{{ darkModeEnabled ? srText.enabled : srText.disabled }}
+    </span>
+    <span class="dark-mode-bg" aria-hidden="true" role="presentation"> </span>
+    <span class="dark-mode-rotate" aria-hidden="true" role="presentation">
       <FaMoon class="moon" />
       <FaSun class="sun" />
     </span>
@@ -23,11 +25,22 @@ const degrees = ref(0);
 export type Props = {
   darkModeEnabled?: boolean;
   as?: string | Component;
+  srText?: {
+    disabled: string;
+    enabled: string;
+  };
 };
 
 const props = withDefaults(defineProps<Props>(), {
   darkModeEnabled: false,
   as: 'span',
+  /**
+   * The text to show for screen readers.
+   */
+  srText: () => ({
+    disabled: 'Light mode is on',
+    enabled: 'Dark mode is on',
+  }),
 });
 
 onBeforeMount(() => {
@@ -45,6 +58,17 @@ watch(
 </script>
 
 <style scoped>
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
 .dark-mode-toggle {
   border-radius: 50%;
   border: 1px solid #fff;
