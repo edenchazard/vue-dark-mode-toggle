@@ -6,13 +6,13 @@
   "files": [
     "lib"
   ],
-  "main": "./lib/vue-dark-mode-toggle.umd.cjs",
-  "module": "./lib/vue-dark-mode-toggle.js",
-  "types": "./lib/index.d.ts",
+  "main": "./dist/vue-dark-mode-toggle.umd.cjs",
+  "module": "./dist/vue-dark-mode-toggle.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./lib/vue-dark-mode-toggle.js",
-      "require": "./lib/vue-dark-mode-toggle.umd.cjs"
+      "import": "./dist/vue-dark-mode-toggle.js",
+      "require": "./dist/vue-dark-mode-toggle.umd.cjs"
     }
   },
   "repository": {

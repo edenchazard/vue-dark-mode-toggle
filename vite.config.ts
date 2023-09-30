@@ -31,7 +31,7 @@ export default defineConfig(({ mode }) => {
     return {
       ...baseConfig,
       build: {
-        outDir: './lib',
+        outDir: './dist',
         emptyOutDir: true,
         lib: {
           entry: resolve(__dirname, 'src/index.ts'),
