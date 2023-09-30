@@ -1,3 +1,6 @@
+[![Test](https://github.com/edenchazard/vue-dark-mode-toggle/actions/workflows/test.yml/badge.svg)](https://github.com/edenchazard/vue-dark-mode-toggle/actions/workflows/test.yml)
+[![Build](https://github.com/edenchazard/vue-dark-mode-toggle/actions/workflows/build.yml/badge.svg)](https://github.com/edenchazard/vue-dark-mode-toggle/actions/workflows/build.yml)
+
 # Vue Dark Mode Toggle
 
 Add a sleek, animated dark mode toggle to your Vue 3 project. It handles everything you need with a composable and a component.
