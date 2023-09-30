@@ -1,10 +1,10 @@
 {
   "name": "@edenchazard/vue-dark-mode-toggle",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "private": false,
   "homepage": "https://github.com/edenchazard/vue-dark-mode-toggle#readme",
   "files": [
-    "lib"
+    "dist"
   ],
   "main": "./dist/vue-dark-mode-toggle.umd.cjs",
   "module": "./dist/vue-dark-mode-toggle.js",
