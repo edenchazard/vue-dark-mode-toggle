@@ -2,7 +2,7 @@ import { computed, reactive, ref } from 'vue';
 
 interface useDarkModeOptions {
   /**
-   * Apply the class name to the given element. If explicitely set to null
+   * Apply the class name to the given element. If explicitly set to null
    * no element will be targeted and you must handle the application yourself.
    *
    * @default 'html'
@@ -27,7 +27,7 @@ interface useDarkModeOptions {
   className?: string;
 }
 
-const defaultValues: useDarkModeOptions = {
+export const defaultValues: useDarkModeOptions = {
   applyTo: 'html',
   localStorageKey: 'enable-dark-mode',
   defaultValue: false,

@@ -82,8 +82,29 @@
             />
             1rem
           </div>
+          <h3>Accessibility</h3>
+          <p>
+            The element renders a label only visible to screen readers, so they
+            know which mode they've currently got active.
+          </p>
         </section>
 
+        <section id="links">
+          <h2>Links</h2>
+          <ul>
+            <li>
+              <a href="https://github.com/edenchazard/vue-dark-mode-toggle"
+                >Github</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.npmjs.com/package/@edenchazard/vue-dark-mode-toggle"
+                >NPM</a
+              >
+            </li>
+          </ul>
+        </section>
         <section id="usage">
           <h2>Usage</h2>
           <p>
@@ -104,22 +125,71 @@
             />
           </div>
 
-          <h3>Component props</h3>
-          <h4>darkModeEnabled</h4>
-          <span class="type">boolean</span>
-          <p>Determine whether to display the dark mode or light mode state.</p>
-          <h4>as</h4>
-          <span class="type">string, object</span>
-          <p>Render it as the provided node. Defaults to span.</p>
+          <div class="table">
+            <h3>Component props</h3>
 
-          <h3>useDarkMode options</h3>
-          <h4>applyTo</h4>
-          <span class="type">string, null, HTML Element</span>
-          <p>
-            Apply the class name to the given element. If explicitely set to
-            null no element will be targeted and you must handle the application
-            yourself.
-          </p>
+            <span>Prop Name</span>
+            <span>Type</span>
+            <span>Default</span>
+            <span>Description</span>
+
+            darkModeEnabled
+            <span>boolean</span>
+            <span class="type">false</span>
+            <p>
+              Determine whether to display the dark mode or light mode state.
+            </p>
+
+            as
+            <span class="type">string, object</span>
+            <span class="type">'span'</span>
+            <p>Render it as the provided node. Defaults to span.</p>
+
+            srText
+            <span class="type">{ disabled: string; enabled: string }</span>
+            <span class="type"
+              >{ disabled: 'Light mode is on', enabled: 'Dark mode is on'
+              }</span
+            >
+            <p>The text to show for screen readers.</p>
+
+            <h3>useDarkMode options</h3>
+
+            <span>Option Name</span>
+            <span>Type</span>
+            <span>Default</span>
+            <span>Description</span>
+
+            applyTo
+            <span>boolean</span>
+            <span class="type">'html'</span>
+            <p>
+              Determine whether to display the dark mode or light mode state.
+            </p>
+
+            localStorageKey
+            <span class="type">string</span>
+            <span class="type">'enable-dark-mode'</span>
+            <p>The local storage key name to persist the dark mode setting.</p>
+
+            defaultValue
+            <span class="type">boolean</span>
+            <span class="type">false</span>
+            <p>
+              If the local storage value isn't set, then the preferred option
+              set by the user will be used. If this can't be found, the default
+              value will be used.
+            </p>
+
+            className
+            <span class="type">string</span>
+            <span class="type">'dark'</span>
+            <p>
+              Apply the class name to the given element. If explicitly set to
+              null no element will be targeted and you must handle the
+              application yourself.
+            </p>
+          </div>
         </section>
       </div>
     </main>
@@ -139,36 +209,43 @@ const clickAgain = ref(false);
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&family=Roboto:wght@500&display=swap');
 
-header {
-  line-height: 1.5;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-}
-
 body {
   background-color: #24220f;
-  color: hsl(43, 74%, 50%);
+  color: hsl(43, 60%, 40%);
   transition:
     color 2s,
     background-color 2s;
 }
 
+header {
+  line-height: 2;
+}
+
+section {
+  margin: 2rem 0 0 0;
+}
+
+h1 {
+  font-size: 4rem;
+}
+h2 {
+  font-size: 3.5rem;
+}
+h3 {
+  font-size: 3rem;
+}
+h4 {
+  font-size: 2.5rem;
+}
+h5 {
+  font-size: 2rem;
+}
+h6 {
+  font-size: 1.5rem;
+}
+a {
+  color: rgb(255, 165, 0);
+}
 #container {
   width: 100%;
   max-width: 50rem;
@@ -236,6 +313,11 @@ button {
   & #toggle {
     animation-name: night-glow;
   }
+  & a,
+  &a:visited {
+    color: rgb(127, 127, 194);
+    font-weight: 700;
+  }
 }
 
 .interact {
@@ -261,18 +343,16 @@ button {
   transform: rotate(-30deg) translate(60%, 70%);
 }
 
-.click-me-enter-active,
-.click-me-leave-active {
-  transition: all 0.5s ease-in-out;
-  opacity: 1;
-}
+.table {
+  display: grid;
+  grid-template-columns: auto auto minmax(5rem, 8rem) 1fr;
+  gap: 2rem;
 
-.click-me-enter-from,
-.click-me-leave-to {
-  opacity: 0;
-  transform: translateY(-10%) translateX(-10%);
+  > h3 {
+    grid-column: 1/5;
+    font-weight: bold;
+  }
 }
-
 .code-wrapper {
   position: relative;
   margin: 1.5rem 0 0 0.5rem;
@@ -295,6 +375,36 @@ button {
     text-wrap: wrap;
     width: 100%;
   }
+}
+
+@media (min-width: 1024px) {
+  header {
+    display: flex;
+    place-items: center;
+    padding-right: calc(var(--section-gap) / 2);
+  }
+
+  .logo {
+    margin: 0 2rem 0 0;
+  }
+
+  header .wrapper {
+    display: flex;
+    place-items: flex-start;
+    flex-wrap: wrap;
+  }
+}
+
+.click-me-enter-active,
+.click-me-leave-active {
+  transition: all 0.5s ease-in-out;
+  opacity: 1;
+}
+
+.click-me-enter-from,
+.click-me-leave-to {
+  opacity: 0;
+  transform: translateY(-10%) translateX(-10%);
 }
 
 @keyframes day-glow {
@@ -321,4 +431,3 @@ button {
   }
 }
 </style>
-.

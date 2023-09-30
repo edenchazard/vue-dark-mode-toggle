@@ -12,7 +12,10 @@
 </template>
 
 <script setup lang="ts">
-import VueDarkModeToggle, { useDarkMode } from './VueDarkModeToggle';
+import {
+  VueDarkModeToggle,
+  useDarkMode,
+} from '@edenchazard/vue-dark-mode-toggle';
 
 const { enabled, toggle } = useDarkMode();
 </script>
