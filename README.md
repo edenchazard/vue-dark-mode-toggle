@@ -5,11 +5,11 @@
 
 Add a sleek, animated dark mode toggle to your Vue 3 project. It handles everything you need with a composable and a component.
 
-Check out the [demo here!](https://edenchazard.github.io/vue-dark-mode-toggle/).
+Check out the [demo here](https://edenchazard.github.io/vue-dark-mode-toggle/)!
 
 ## VueDarkModeToggle
 
-A component that can be used with the composable. The component doesn't decide if dark mode is enabled itself, but it accepts a `dark-mode-enabled' prop and will display the appropriate sun/moon graphic.
+A component that can be used with the composable. The component doesn't decide if dark mode is enabled itself, but it accepts a `dark-mode-enabled` prop and will display the appropriate sun/moon graphic.
 
 ## useDarkMode
 
@@ -52,3 +52,7 @@ npm run test:unit
 ```sh
 npm run lint
 ```
+
+## Icon credits
+
+SVG icons from [FontAwesome](https://fontawesome.com/).
