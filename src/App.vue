@@ -132,7 +132,7 @@ import example from '../examples/example.vue?raw';
 import { VueDarkModeToggle, useDarkMode } from '.';
 import CodeBlock from 'vue3-code-block';
 
-const { enabled, toggle } = useDarkMode({ applyTo: 'body' });
+const { enabled, toggle } = useDarkMode();
 const clickAgain = ref(false);
 </script>
 
