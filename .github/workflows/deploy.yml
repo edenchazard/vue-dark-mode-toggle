@@ -17,9 +17,18 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - name: Install Bun Dependencies
+        run: bun install
+
       - name: Build static files
         id: build
-        run: npm run build:docs
+        run: bun run build:docs
 
       - name: Upload static files as artifact
         id: deployment
