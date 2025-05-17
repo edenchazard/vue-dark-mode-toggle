@@ -7,9 +7,21 @@
       <div id="content">
         <div id="demo">
           <div class="interact">
-            <Transition name="click-me" appear :duration="1000">
-              <span v-if="clickAgain" class="message again">Click again!</span>
-              <span v-else class="message click">Click me!</span>
+            <Transition
+              name="click-me"
+              appear
+              :duration="1000"
+            >
+              <span
+                v-if="clickAgain"
+                class="message again"
+                >Click again!</span
+              >
+              <span
+                v-else
+                class="message click"
+                >Click me!</span
+              >
             </Transition>
             <VueDarkModeToggle
               as="button"
@@ -34,7 +46,11 @@
           <p v-show="enabled">Be careful out there!</p>
           <p v-show="!enabled">The sun is up, have a good day.</p>
 
-          <button id="toggle" type="button" @click="toggle">
+          <button
+            id="toggle"
+            type="button"
+            @click="toggle"
+          >
             {{
               enabled
                 ? 'Turn the lights on!'
@@ -51,7 +67,7 @@
           </p>
           <h3>Responsive Sizing</h3>
           <p>
-            Specify the height and with and the toggle will maintain its look
+            Specify the height and width and the toggle will maintain its look
             without pissing you off.
           </p>
           <div id="sizes">
@@ -120,7 +136,7 @@
             <CodeBlock
               highlightjs
               class="code"
-              :code="example"
+              :code="Example"
               theme="paraiso-dark"
             />
           </div>
@@ -198,9 +214,9 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import example from '../examples/example.vue?raw';
-import { VueDarkModeToggle, useDarkMode } from '.';
 import CodeBlock from 'vue3-code-block';
+import Example from '@demo/code/Example.vue?raw';
+import { VueDarkModeToggle, useDarkMode } from '@/index';
 
 const { enabled, toggle } = useDarkMode();
 const clickAgain = ref(false);
@@ -314,7 +330,7 @@ button {
     animation-name: night-glow;
   }
   & a,
-  &a:visited {
+  & a:visited {
     color: rgb(127, 127, 194);
     font-weight: 700;
   }

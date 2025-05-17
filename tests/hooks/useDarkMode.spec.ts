@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, afterEach } from 'vitest';
-import useDarkMode from '../useDarkMode';
+import useDarkMode from '@/hooks/useDarkMode';
 import { JSDOM } from 'jsdom';
 
 describe('useDarkMode composable', () => {
@@ -19,11 +19,11 @@ describe('useDarkMode composable', () => {
 
       const { enabled } = useDarkMode();
 
-      expect(window.matchMedia('(prefers-color-scheme: dark)').matches).toBe(
-        false,
-      );
+      expect(
+        window.matchMedia('(prefers-color-scheme: dark)').matches,
+      ).to.be.eql(false);
 
-      expect(enabled.value).toBe(false);
+      expect(enabled.value).to.be.eql(false);
     });
 
     it('when dark', () => {
@@ -37,11 +37,11 @@ describe('useDarkMode composable', () => {
 
       const { enabled } = useDarkMode();
 
-      expect(window.matchMedia('(prefers-color-scheme: dark)').matches).toBe(
-        true,
-      );
+      expect(
+        window.matchMedia('(prefers-color-scheme: dark)').matches,
+      ).to.be.eql(true);
 
-      expect(enabled.value).toBe(true);
+      expect(enabled.value).to.be.eql(true);
     });
   });
 
@@ -55,8 +55,8 @@ describe('useDarkMode composable', () => {
     });
 
     const { enabled } = useDarkMode();
-    expect(enabled.value).toBe(true);
-    expect(localStorage.getItem('enable-dark-mode')).toBeNull();
+    expect(enabled.value).to.be.eql(true);
+    expect(localStorage.getItem('enable-dark-mode')).to.be.eql(null);
   });
 
   it('prefers to use local storage key over match media', () => {
@@ -79,13 +79,13 @@ describe('useDarkMode composable', () => {
     it('when false', () => {
       const { enabled } = useDarkMode();
       enabled.value = false;
-      expect(localStorage.getItem('enable-dark-mode')).toBe('false');
+      expect(localStorage.getItem('enable-dark-mode')).to.be.eql('false');
     });
 
     it('when true', () => {
       const { enabled } = useDarkMode();
       enabled.value = true;
-      expect(localStorage.getItem('enable-dark-mode')).toBe('true');
+      expect(localStorage.getItem('enable-dark-mode')).to.be.eql('true');
     });
   });
 
@@ -93,14 +93,14 @@ describe('useDarkMode composable', () => {
     const { toggle, enabled } = useDarkMode();
     enabled.value = false;
     toggle();
-    expect(enabled.value).toBe(true);
+    expect(enabled.value).to.be.eql(true);
   });
 
   it('clearPreference() removes value from local storage', () => {
     const { clearPreference } = useDarkMode();
     clearPreference();
 
-    expect(localStorage.getItem('enable-dark-mode')).toBeNull();
+    expect(localStorage.getItem('enable-dark-mode')).to.be.eql(null);
   });
 
   describe('the options should', () => {
@@ -111,7 +111,7 @@ describe('useDarkMode composable', () => {
       const { enabled } = useDarkMode({ applyTo: 'body' });
 
       enabled.value = true;
-      expect(document.body.classList.contains('dark')).toBe(true);
+      expect(document.body.classList.contains('dark')).to.be.eql(true);
     });
 
     it('not apply class to default html target when applyTo is null', () => {
@@ -121,7 +121,9 @@ describe('useDarkMode composable', () => {
       const { enabled } = useDarkMode({ applyTo: null });
 
       enabled.value = true;
-      expect(document.documentElement.classList.contains('dark')).toBe(false);
+      expect(document.documentElement.classList.contains('dark')).to.be.eql(
+        false,
+      );
     });
 
     it('use given class name', () => {
@@ -132,8 +134,12 @@ describe('useDarkMode composable', () => {
       const { enabled } = useDarkMode({ className });
 
       enabled.value = true;
-      expect(document.documentElement.classList.contains(className)).toBe(true);
-      expect(document.documentElement.classList.contains('dark')).toBe(false);
+      expect(document.documentElement.classList.contains(className)).to.be.eql(
+        true,
+      );
+      expect(document.documentElement.classList.contains('dark')).to.be.eql(
+        false,
+      );
     });
 
     it('use given local storage key', () => {
@@ -142,8 +148,8 @@ describe('useDarkMode composable', () => {
       const { enabled } = useDarkMode({ localStorageKey });
 
       enabled.value = true;
-      expect(localStorage.getItem('enable-dark-mode')).toBeNull();
-      expect(localStorage.getItem(localStorageKey)).toBe('true');
+      expect(localStorage.getItem('enable-dark-mode')).to.be.eql(null);
+      expect(localStorage.getItem(localStorageKey)).to.be.eql('true');
     });
   });
 });

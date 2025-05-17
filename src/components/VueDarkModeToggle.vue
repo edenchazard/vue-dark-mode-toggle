@@ -17,8 +17,8 @@
 
 <script setup lang="ts">
 import { onBeforeMount, ref, watch, type Component } from 'vue';
-import FaMoon from './icons/FaMoon.vue';
-import FaSun from './icons/FaSun.vue';
+import FaMoon from '@/components/icons/FaMoon.vue';
+import FaSun from '@/components/icons/FaSun.vue';
 
 const degrees = ref(0);
 

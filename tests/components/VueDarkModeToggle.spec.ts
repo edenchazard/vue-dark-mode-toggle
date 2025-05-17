@@ -1,7 +1,6 @@
 import { describe, it, expect } from 'vitest';
-
 import { mount } from '@vue/test-utils';
-import VueDarkModeToggle from '../VueDarkModeToggle.vue';
+import VueDarkModeToggle from '@/components/VueDarkModeToggle.vue';
 
 describe('VueDarkModeToggle', () => {
   it('has night class when prop dark mode enabled', () => {
