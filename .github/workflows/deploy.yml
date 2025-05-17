@@ -28,7 +28,7 @@ jobs:
 
       - name: Build static files
         id: build
-        run: bun run build:docs
+        run: bun run docs:build
 
       - name: Upload static files as artifact
         id: deployment
