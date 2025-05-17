@@ -7,8 +7,17 @@
     <span class="sr-only"
       >{{ darkModeEnabled ? srText.enabled : srText.disabled }}
     </span>
-    <span class="dark-mode-bg" aria-hidden="true" role="presentation"> </span>
-    <span class="dark-mode-rotate" aria-hidden="true" role="presentation">
+    <span
+      class="dark-mode-bg"
+      aria-hidden="true"
+      role="presentation"
+    >
+    </span>
+    <span
+      class="dark-mode-rotate"
+      aria-hidden="true"
+      role="presentation"
+    >
       <FaMoon class="moon" />
       <FaSun class="sun" />
     </span>
