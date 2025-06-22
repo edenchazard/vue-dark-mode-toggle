@@ -1,4 +1,4 @@
-import VueDarkModeToggle from '@/components/VueDarkModeToggle.vue';
-import useDarkMode from '@/hooks/useDarkMode';
+import VueRiseAndShine from '@src/VueRiseAndShine.vue';
+import useDarkMode from '@src/useDarkMode';
 
-export { VueDarkModeToggle, useDarkMode };
+export { VueRiseAndShine, useDarkMode };

@@ -1,8 +1,7 @@
 <template>
-  <VueDarkModeToggle
+  <VueRiseAndShine
     as="button"
     type="button"
-    :dark-mode-enabled="enabled"
     :style="{
       width: '4rem',
       height: '4rem',
@@ -12,10 +11,7 @@
 </template>
 
 <script setup lang="ts">
-import {
-  VueDarkModeToggle,
-  useDarkMode,
-} from '@edenchazard/vue-dark-mode-toggle';
+import { VueRiseAndShine, useDarkMode } from '@edenchazard/vue-rise-and-shine';
 
-const { enabled, toggle } = useDarkMode();
+const { toggle } = useDarkMode();
 </script>

@@ -1,8 +1,7 @@
-import { fileURLToPath, URL } from 'node:url';
-import { defineConfig, UserConfig } from 'vite';
+import { defineConfig } from 'vite';
+import type { UserConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import dts from 'vite-plugin-dts';
-import { resolve } from 'node:path';
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
@@ -10,8 +9,8 @@ export default defineConfig(({ mode }) => {
     plugins: [vue()],
     resolve: {
       alias: {
-        '@': fileURLToPath(new URL('src', import.meta.url)),
-        '@demo': fileURLToPath(new URL('demo', import.meta.url)),
+        '@demo': '/demo',
+        '@src': '/src',
       },
     },
     build: {
@@ -21,24 +20,26 @@ export default defineConfig(({ mode }) => {
   };
 
   if (mode === 'docs') {
-    config.base = '/vue-dark-mode-toggle/';
+    config.base = '/vue-rise-and-shine/';
     config.build = {
       ...config.build,
       outDir: 'docs',
     };
   } else {
-    config.plugins?.push(
+    config.plugins?.push?.(
       dts({
-        entryRoot: './src',
         tsconfigPath: './tsconfig.json',
+        include: ['./src'],
+        aliasesExclude: ['@src'],
       }),
     );
+
     config.build = {
       ...config.build,
       outDir: 'dist',
       lib: {
         entry: {
-          index: resolve('src/index.ts'),
+          index: 'src/index.ts',
         },
         formats: ['es', 'cjs'],
       },
@@ -46,7 +47,7 @@ export default defineConfig(({ mode }) => {
         external: ['vue'],
         output: {
           globals: {
-            vue: 'Vue',
+            vue: 'vue',
           },
         },
       },

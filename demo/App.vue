@@ -15,44 +15,43 @@
               <span
                 v-if="clickAgain"
                 class="message again"
-                >Click again!</span
               >
+                Click again!
+              </span>
               <span
                 v-else
                 class="message click"
-                >Click me!</span
               >
+                Click me!
+              </span>
             </Transition>
-            <VueDarkModeToggle
+            <VueRiseAndShine
               as="button"
               type="button"
-              :dark-mode-enabled="enabled"
               :style="{
                 width: '8rem',
                 height: '8rem',
               }"
-              @click="
-                () => {
-                  toggle();
-                  clickAgain = !clickAgain;
-                }
-              "
+              @click="clickAgain = !clickAgain"
             />
           </div>
         </div>
 
         <div id="narration">
-          <p>Dark mode is currently {{ enabled ? 'on' : 'off' }}.</p>
-          <p v-show="enabled">Be careful out there!</p>
-          <p v-show="!enabled">The sun is up, have a good day.</p>
+          <p>Dark mode is currently {{ isDark ? 'on' : 'off' }}.</p>
+          <p v-show="isDark">Be careful out there!</p>
+          <p v-show="!isDark">The sun is up, have a good day.</p>
+          <p>
+            Your system prefers {{ prefersDark ? 'dark mode' : 'light mode' }}.
+          </p>
 
           <button
             id="toggle"
             type="button"
-            @click="toggle"
+            @click="toggle()"
           >
             {{
-              enabled
+              isDark
                 ? 'Turn the lights on!'
                 : "I'm sleeping in until the evening!"
             }}
@@ -71,8 +70,7 @@
             without pissing you off.
           </p>
           <div id="sizes">
-            <VueDarkModeToggle
-              :dark-mode-enabled="enabled"
+            <VueRiseAndShine
               :style="{
                 width: '4rem',
                 height: '4rem',
@@ -80,8 +78,7 @@
             />
             4rem
 
-            <VueDarkModeToggle
-              :dark-mode-enabled="enabled"
+            <VueRiseAndShine
               :style="{
                 width: '2rem',
                 height: '2rem',
@@ -89,8 +86,7 @@
             />
             2rem
 
-            <VueDarkModeToggle
-              :dark-mode-enabled="enabled"
+            <VueRiseAndShine
               :style="{
                 width: '1rem',
                 height: '1rem',
@@ -109,13 +105,13 @@
           <h2>Links</h2>
           <ul>
             <li>
-              <a href="https://github.com/edenchazard/vue-dark-mode-toggle"
+              <a href="https://github.com/edenchazard/vue-rise-and-shine"
                 >Github</a
               >
             </li>
             <li>
               <a
-                href="https://www.npmjs.com/package/@edenchazard/vue-dark-mode-toggle"
+                href="https://www.npmjs.com/package/@edenchazard/vue-rise-and-shine"
                 >NPM</a
               >
             </li>
@@ -149,13 +145,6 @@
             <span>Default</span>
             <span>Description</span>
 
-            darkModeEnabled
-            <span>boolean</span>
-            <span class="type">false</span>
-            <p>
-              Determine whether to display the dark mode or light mode state.
-            </p>
-
             as
             <span class="type">string, object</span>
             <span class="type">'span'</span>
@@ -176,11 +165,13 @@
             <span>Default</span>
             <span>Description</span>
 
-            applyTo
-            <span>boolean</span>
+            selector
+            <span>boolean, HTMLElement</span>
             <span class="type">'html'</span>
             <p>
-              Determine whether to display the dark mode or light mode state.
+              The element to apply the dark mode class to. If set to
+              <code>null</code>, no element will be targeted and you must handle
+              the application yourself.
             </p>
 
             localStorageKey
@@ -216,9 +207,9 @@
 import { ref } from 'vue';
 import CodeBlock from 'vue3-code-block';
 import Example from '@demo/code/Example.vue?raw';
-import { VueDarkModeToggle, useDarkMode } from '@/index';
+import { VueRiseAndShine, useDarkMode } from '@src/index';
 
-const { enabled, toggle } = useDarkMode();
+const { isDark, prefersDark, toggle } = useDarkMode();
 const clickAgain = ref(false);
 </script>
 
