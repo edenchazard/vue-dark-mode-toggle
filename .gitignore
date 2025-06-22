@@ -24,3 +24,5 @@ dist-ssr
 
 coverage
 docs
+
+*.tgz
