@@ -56,7 +56,7 @@
 
 <script setup lang="ts">
 import { useDarkMode } from '@src/index';
-import { ref, watch, type Component } from 'vue';
+import { onBeforeMount, ref, watch, type Component } from 'vue';
 
 const degrees = ref(0);
 
@@ -82,15 +82,14 @@ withDefaults(
 
 const { isDark, toggle } = useDarkMode();
 
-watch(
-  isDark,
-  () => {
-    degrees.value += 180;
-  },
-  {
-    immediate: true,
-  },
-);
+onBeforeMount(() => {
+  // Initialize the degrees based on the current dark mode state
+  degrees.value = isDark.value ? 180 : 0;
+});
+
+watch(isDark, () => {
+  degrees.value += 180;
+});
 </script>
 
 <style scoped>
